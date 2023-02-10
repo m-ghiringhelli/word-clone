@@ -1,17 +1,18 @@
 import React from 'react'
 
-export default function GuessInput() {
-  const [guess, setGuess] = React.useState({});
-  const [guessText, setGuessText] = React.useState('');
+export default function GuessInput({ guesses, setGuesses }) {
+  const [guess, setGuessText] = React.useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
-    setGuess({ guess: guessText });
+    if (guess.length !== 5) return;
+    const nextGuesses = [...guesses, { guess }];
+    setGuesses(nextGuesses);
     setGuessText('');
   }
 
   function handleChange(e) {
-    if (guessText.length >= 5) return;
+    if (guess.length >= 5) return;
     setGuessText(e.target.value.toUpperCase());
   }
 
@@ -21,7 +22,7 @@ export default function GuessInput() {
       <input 
         id="guess-input" 
         type="text" 
-        value={guessText}
+        value={guess}
         onChange={handleChange}></input>
     </form>
   )
