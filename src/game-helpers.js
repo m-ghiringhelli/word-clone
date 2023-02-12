@@ -1,8 +1,8 @@
-export function checkGuess(guess, answer) {
+export function checkGuess(guess , answer) {
   if (!guess) {
     return null;
   }
-
+  console.log('in check guess', guess);
   const guessChars = guess.toUpperCase().split('');
   const answerChars = answer.split('');
 
